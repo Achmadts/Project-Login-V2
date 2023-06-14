@@ -14,6 +14,7 @@ if(isset($_POST['submit'])){
 
    if(!empty($email) && !empty($password)){
       $email = filter_var($email, FILTER_SANITIZE_EMAIL); // Filter email
+      $password = filter_var($password, FILTER_SANITIZE_STRING); // Filter password
 
       $select = "SELECT * FROM user_form WHERE email = '$email' ";
       $result = mysqli_query($con, $select);
@@ -32,8 +33,14 @@ if(isset($_POST['submit'])){
 
                   setcookie('email', $email_cookie, time() + (86400 * 30), "/");
                   setcookie('password', $password_cookie, time() + (86400 * 30), "/");
+               }else{
+               // Menghapus cookie jika remember me tidak diaktifkan atau tidak ada session remember
+               if (!isset($_SESSION["remember"]) || $_SESSION["remember"] !== true) {
+                  setcookie('password', '', time() - 3600, "/");
+                  setcookie('email', '', time() - 3600, "/");
                }
-
+            }
+            
                header('location:admin_page.php');
                exit();
             }
@@ -74,7 +81,7 @@ if(isset($_POST['submit'])){
       }
       ?>
       <input type="email" name="email" required placeholder="Masukkan email kamu" autocomplete="off" value="<?php if(isset($_COOKIE['email'])) { echo htmlspecialchars($_COOKIE['email']); } ?>" style="font-size: 80%;">
-      <input type="password" name="password" required placeholder="Masukkan password kamu" style="font-size: 80%;">
+      <input type="password" name="password" required placeholder="Masukkan password kamu" autocomplete="off" value="<?php if(isset($_COOKIE['password'])) { echo htmlspecialchars($_COOKIE['password']); } ?>" style="font-size: 80%;">
       <div style="text-align: left;">
          <label style="user-select: none; font-size: 90%;"><input type="checkbox" id="show-password" style="align-items: left; width: auto;"> Show Password</label>
       </div>
