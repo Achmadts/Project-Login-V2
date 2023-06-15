@@ -4,6 +4,11 @@ require_once 'connect.php';
 header("Content-Security-Policy: frame-ancestors 'none';");
 header("X-Frame-Options: DENY");
 
+if(isset($_SESSION["admin_name"])){
+   header('Location: admin_page.php');
+   exit;
+}
+
 // Jika tombol submit di klik
 if(isset($_POST['submit'])){
    $error = array();

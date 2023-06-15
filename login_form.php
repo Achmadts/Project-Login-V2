@@ -4,6 +4,11 @@ require_once 'config.php';
 header("Content-Security-Policy: frame-ancestors 'none';");
 header("X-Frame-Options: DENY");
 
+if(isset($_SESSION["user_name"])){
+   header('Location: user_page.php');
+   exit;
+}
+
 // Jika tombol submit di klik
 if(isset($_POST['submit'])) {
    // Mengecek apakah form login diisi dengan benar

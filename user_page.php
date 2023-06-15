@@ -4,10 +4,7 @@ require_once 'config.php';
 header("Content-Security-Policy: frame-ancestors 'none';");
 header("X-Frame-Options: DENY");
 check_user_login();
-// if(!isset($_SESSION['login'])){
-//    header('location: login_form.php');
-//    exit;
-// }
+
 ?>
 
 <!DOCTYPE html>

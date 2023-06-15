@@ -5,7 +5,7 @@ require_once 'connect.php';
 header("Content-Security-Policy: frame-ancestors 'none';");
 header("X-Frame-Options: DENY");
 
-if(!isset($_SESSION['login'])){
+if(!isset($_SESSION["user_name"])){
     header('location: login_form.php');   
 }
 ?>
