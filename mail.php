@@ -4,7 +4,8 @@
   require_once 'PHPMailer-master/PHPMailer-master/src/Exception.php';
   require_once 'PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
   require_once 'PHPMailer-master/PHPMailer-master/src/SMTP.php';
-  require_once 'config.php';
+  require_once 'user_php/config.php';
+  require_once 'admin_php/connect.php';
 
 function send_mail($recipient,$subject,$message)
 {
