@@ -4,7 +4,7 @@ header("X-Frame-Options: DENY");
 //merupakan data config untuk semua admin page
 
 $host = 'localhost';
-$user = 'rot';
+$user = 'root';
 $password = '';
 $database = 'user_db';
 
